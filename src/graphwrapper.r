@@ -132,7 +132,7 @@ LineGraphWrapper <-
   )
 
 BarGraphWrapper <-
-  R6Class("LineGraphWrapper",
+  R6Class("BarGraphWrapper",
     inherit = GraphWrapper,
 
     public = list(
