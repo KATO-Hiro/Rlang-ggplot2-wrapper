@@ -34,6 +34,16 @@ AxisWrapper <-
         )
       },
 
+      # Require: The below library is needed.
+      # require(scales)
+      # breaks: scale interval.
+
+      # example:
+      # breaks = date_breaks("30 days")
+      modify_x_axis_by_time_series = function(breaks) {
+        return (scale_x_datetime(breaks = breaks))
+      },
+
       modify_y_axis = function(lower_and_upper, ticks) {
         return (scale_y_continuous(limits = lower_and_upper,
                                    breaks = ticks,

@@ -4,6 +4,7 @@
 require(R6)
 require("tidyr")
 require("reshape2")
+require("tidyverse")
 
 source("graphwrapper.r")
 source("pdfcreator.r")
@@ -18,6 +19,20 @@ main <- function(){
   g <- make_a_scatter_plot(data = sample_data,
                            aes = aes,
                            title = "TODO: Write title.")
+
+  # dummy line data.
+  # https://mrunadon.github.io/%E6%A6%82%E8%A6%81%E3%82%92%E3%81%8A%E3%81%95%E3%81%88%E3%81%A6ggplot2%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB%E3%81%A8%E3%82%B3%E3%83%BC%E3%83%89%E9%9B%86/
+  df_temperature <- data.frame(Temperature = rgamma(365, 15, 2)) %>%
+    dplyr::mutate(Lower = Temperature - 10,
+                  Upper = Temperature + 15,
+                  Date = as.POSIXct(seq(as.Date("2019-01-01"),
+                                        as.Date("2019-12-31"),
+                                        by = "days")))
+  aes <- aes(x = Date,
+             y = Temperature)
+  g <- make_a_line_graph(data = df_temperature,
+                         aes = aes,
+                         title = "TODO: Write title.")
 
   pdf <- PDFCreator$new(my_name = "sample")
   pdf$open()
@@ -59,6 +74,29 @@ make_a_scatter_plot <- function(data, aes, title) {
 
   grid <- scatter_plot$add_grid()
   g <- g + grid$set_default()
+
+  return (g)
+}
+
+make_a_line_graph <- function(data, aes, title) {
+  require(scales)
+
+  line_graph <- LineGraphWrapper$new(data, aes)
+  g <- line_graph$get_graph_object()
+
+  canvas <- line_graph$add_canvas()
+  g <- g + canvas$initialize_background()
+  g <- g + canvas$add_title(title)
+  g <- g + canvas$add_margin()
+
+  axis <- line_graph$add_axis()
+  g <- g + axis$add_labels(x_axis_name = "TODO: Write x axis label name.",
+                           y_axis_name = "TODO: Write y axis label name.")
+  g <- g + axis$set_labels_font()
+  g <- g + axis$modify_x_axis_by_time_series(breaks = date_breaks("90 days"))
+  g <- g + axis$modify_y_axis(lower_and_upper = c(0, 20),
+                              ticks = seq(0, 20, 2))
+  g <- g + axis$set_axis_font()
 
   return (g)
 }
