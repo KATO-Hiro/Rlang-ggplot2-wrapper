@@ -14,6 +14,10 @@ AxisWrapper <-
         labs(x = x_axis_name, y = y_axis_name)
       },
 
+      set_labels_font = function(size = 15) {
+        return (theme(axis.title = element_text(size = size)))
+      },
+
       set_axis_font = function(size = 15) {
         return (theme(axis.text = element_text(size = size)))
       }
