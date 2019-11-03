@@ -18,6 +18,10 @@ LegendWrapper <-
         return (theme(legend.position = position))
       },
 
+      set_font = function(size = 14) {
+        return (theme(legend.text = element_text(size = size)))
+      },
+
       set_edge = function() {
         return (theme(legend.box.background = element_rect(),
                       legend.box.margin = margin(1, 1, 1, 1)))
