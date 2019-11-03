@@ -15,6 +15,7 @@ main <- function(){
   pdf$open()
   renderer <- Renderer$new()
 
+  # Scatter plot sample.
   file_name <- "sample.csv"
   sample_data <- read.csv(file_name)
   aes <- aes(x = sample_data$x_axis_values,
@@ -26,6 +27,7 @@ main <- function(){
 
   renderer$add_graph_object(g)
 
+  # Line graph sample.
   # dummy line data.
   # https://mrunadon.github.io/%E6%A6%82%E8%A6%81%E3%82%92%E3%81%8A%E3%81%95%E3%81%88%E3%81%A6ggplot2%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB%E3%81%A8%E3%82%B3%E3%83%BC%E3%83%89%E9%9B%86/
   df_temperature <- data.frame(Temperature = rgamma(365, 15, 2)) %>%
@@ -42,6 +44,7 @@ main <- function(){
 
   renderer$add_graph_object(g)
 
+  # Bar graph sample.
   aes <- aes(x = Date,
              y = Temperature,
              fill = "")
@@ -52,6 +55,7 @@ main <- function(){
 
   renderer$add_graph_object(g)
 
+  # Histgram sample.
   aes <- aes(x = Temperature,
              fill = "")
 
