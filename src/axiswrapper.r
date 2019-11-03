@@ -31,12 +31,10 @@ AxisWrapper <-
         )
       },
 
-      modify_y_axis_limits = function(min_value = 0, max_value) {
-        return (scale_y_continuous(limits = c(min_value, max_value)))
-      },
-
-      show_y_axis_labels = function(ticks) {
-        return (scale_y_continuous(breaks = ticks))
+      modify_y_axis = function(lower_and_upper, ticks) {
+        return (scale_y_continuous(limits = lower_and_upper,
+                                   breaks = ticks)
+        )
       },
 
       set_axis_font = function(size = 15) {
