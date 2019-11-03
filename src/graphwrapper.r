@@ -31,11 +31,7 @@ GraphWrapper <-
         return (Canvas$new())
       },
 
-      add_x_axis = function() {
-        return (AxisWrapper$new())
-      },
-
-      add_y_axis = function() {
+      add_axis = function() {
         return (AxisWrapper$new())
       },
 
