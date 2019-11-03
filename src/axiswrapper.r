@@ -35,6 +35,10 @@ AxisWrapper <-
         return (scale_x_continuous(breaks = ticks))
       },
 
+      show_y_axis_labels = function(ticks) {
+        return (scale_y_continuous(breaks = ticks))
+      },
+
       set_axis_font = function(size = 15) {
         return (theme(axis.text = element_text(size = size)))
       }
