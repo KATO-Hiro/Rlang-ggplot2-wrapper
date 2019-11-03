@@ -9,6 +9,10 @@ Canvas <-
     public = list(
       initialize_background = function() {
         return (theme_bw())
+      },
+
+      add_title = function(main_title = "") {
+        return (labs(title = main_title))
       }
     )
   )
