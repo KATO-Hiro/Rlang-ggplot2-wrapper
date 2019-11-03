@@ -1,6 +1,10 @@
 # Graph wrapper for ggplot2.
 
 # Usage:
+#  Install these packages as needed.
+#  install.packages("R6")
+#  install.packages("tidyverse")
+
 #  Import libraries and helper files.
 #  require(R6)
 #  require("tidyr")
