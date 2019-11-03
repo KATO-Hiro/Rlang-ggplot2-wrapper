@@ -151,3 +151,20 @@ BarGraphWrapper <-
       }
     )
   )
+
+HistgramWrapper <-
+  R6Class("HistgramWrapper",
+    inherit = GraphWrapper,
+
+    public = list(
+      initialize = function(data, aes) {
+        super$initialize(data)
+        self$add_geom(aes)
+      },
+
+      add_geom = function(aes) {
+        private$graph_object <-
+          private$graph_object + geom_histogram(aes)
+      }
+    )
+  )

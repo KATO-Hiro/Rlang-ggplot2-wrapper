@@ -11,8 +11,8 @@ source("pdfcreator.r")
 source("renderer.r")
 
 main <- function(){
-  pdf <- PDFCreator$new(my_name = "sample")
-  pdf$open()
+  # pdf <- PDFCreator$new(my_name = "sample")
+  # pdf$open()
   renderer <- Renderer$new()
 
   file_name <- "sample.csv"
@@ -52,9 +52,18 @@ main <- function(){
 
   renderer$add_graph_object(g)
 
+  aes <- aes(x = Temperature,
+             fill = "")
+
+  g <- make_a_histgram(data = df_temperature,
+                       aes = aes,
+                       title = "TODO: Write title.")
+
+  renderer$add_graph_object(g)
+
   renderer$render_graph_objects()
 
-  pdf$close()
+  # pdf$close()
 }
 
 make_a_scatter_plot <- function(data, aes, title) {
@@ -135,6 +144,36 @@ make_a_bar_graph <- function(data, aes, title) {
                              values = c("darkblue"),
                              labels = c("TODO: Write label name"))
   legend <- bar_graph$add_legend()
+  g <- g + legend$set_position(c(0.25, 0.9))
+  g <- g + legend$set_font()
+  g <- g + legend$set_edge()
+
+  return (g)
+}
+
+make_a_histgram <- function(data, aes, title) {
+  histgram <- HistgramWrapper$new(data, aes)
+  g <- histgram$get_graph_object()
+
+  canvas <- histgram$add_canvas()
+  g <- g + canvas$initialize_background()
+  g <- g + canvas$add_title(title)
+  g <- g + canvas$add_margin()
+
+  axis <- histgram$add_axis()
+  g <- g + axis$add_labels(x_axis_name = "TODO: Write x axis label name.",
+                           y_axis_name = "TODO: Write y axis label name.")
+  g <- g + axis$set_labels_font()
+  g <- g + axis$modify_x_axis(lower_and_upper = c(0.0, 20.0),
+                              ticks = seq(0.0, 20.0, 2))
+  g <- g + axis$modify_y_axis(lower_and_upper = c(0, 50),
+                              ticks = seq(0, 50, 5))
+  g <- g + axis$set_axis_font()
+
+  g <- g + scale_fill_manual(name = "",
+                             values = c("green"),
+                             labels = c("TODO: Write label name"))
+  legend <- histgram$add_legend()
   g <- g + legend$set_position(c(0.25, 0.9))
   g <- g + legend$set_font()
   g <- g + legend$set_edge()
