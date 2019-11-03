@@ -34,16 +34,6 @@ AxisWrapper <-
         )
       },
 
-      # Require: The below library is needed.
-      # require(scales)
-      # breaks: scale interval.
-
-      # example:
-      # breaks = date_breaks("30 days")
-      modify_x_axis_by_time_series = function(breaks) {
-        return (scale_x_datetime(breaks = breaks))
-      },
-
       modify_y_axis = function(lower_and_upper, ticks) {
         return (scale_y_continuous(limits = lower_and_upper,
                                    breaks = ticks,
@@ -53,6 +43,23 @@ AxisWrapper <-
 
       set_axis_font = function(size = 15) {
         return (theme(axis.text = element_text(size = size)))
+      }
+    )
+  )
+
+AxisWrapperTimeSeries <-
+  R6Class("AxisWrapper",
+    inherit = AxisWrapper,
+
+    public = list(
+      # Require: The below library is needed.
+      # require(scales)
+      # ticks: scale interval.
+
+      # example:
+      # breaks = date_breaks("30 days")
+      modify_x_axis = function(lower_and_upper, ticks) {
+        return (scale_x_datetime(breaks = ticks))
       }
     )
   )

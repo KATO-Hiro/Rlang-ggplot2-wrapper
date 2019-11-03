@@ -94,7 +94,7 @@ make_a_line_graph <- function(data, aes, title) {
   g <- g + axis$add_labels(x_axis_name = "TODO: Write x axis label name.",
                            y_axis_name = "TODO: Write y axis label name.")
   g <- g + axis$set_labels_font()
-  g <- g + axis$modify_x_axis_by_time_series(breaks = date_breaks("90 days"))
+  g <- g + axis$modify_x_axis(ticks = date_breaks("90 days"))
   g <- g + axis$modify_y_axis(lower_and_upper = c(0, 20),
                               ticks = seq(0, 20, 2))
   g <- g + axis$set_axis_font()

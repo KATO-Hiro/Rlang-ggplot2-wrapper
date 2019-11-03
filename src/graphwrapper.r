@@ -123,6 +123,10 @@ LineGraphWrapper <-
 
       add_geom = function(aes) {
         private$graph_object <- private$graph_object + geom_line(aes)
+      },
+
+      add_axis = function() {
+        return (AxisWrapperTimeSeries$new())
       }
     )
   )
