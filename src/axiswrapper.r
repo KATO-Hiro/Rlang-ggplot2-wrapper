@@ -9,13 +9,10 @@ AxisWrapper <-
     public = list(
       initialize = function() {
         print('called!')
-      }
-    #   add_major_line = function(color) {
-    #     return (theme(panel.grid.major = element_line(color)))
-    #   },
+      },
 
-    #   add_minor_line = function(color) {
-    #     return (theme(panel.grid.minor = element_line(color)))
-    #   }
+      add_label = function(x_axis_name, y_axis_name) {
+        labs(x = x_axis_name, y = y_axis_name)
+      }
     )
   )
