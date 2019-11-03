@@ -11,52 +11,49 @@ source("renderer.r")
 main <- function(){
   file_name <- "sample.csv"
   sample_data <- read.csv(file_name)
-  aes <- aes(x = sample_data$seismic_intensity,
-             y = sample_data$duration)
+  aes <- aes(x = sample_data$x_axis_values,
+             y = sample_data$y_axis_values,
+             fill = "")
+  g <- make_a_scatter_plot(data = sample_data,
+                           aes = aes,
+                           title = "TODO: Write title.")
 
-  scatter_plot <- ScatterPlotWrapper$new(sample_data, aes)
+  renderer <- Renderer$new()
+  renderer$add_graph_object(g)
+  renderer$render_graph_objects()
+}
+
+make_a_scatter_plot <- function(data, aes, title) {
+  scatter_plot <- ScatterPlotWrapper$new(data, aes)
   g <- scatter_plot$get_graph_object()
 
   canvas <- scatter_plot$add_canvas()
   g <- g + canvas$initialize_background()
+  g <- g + canvas$add_title(title)
+  g <- g + canvas$add_margin()
+
+  axis <- scatter_plot$add_axis()
+  g <- g + axis$add_labels(x_axis_name = "TODO: Write x axis label name.",
+                           y_axis_name = "TODO: Write y axis label name.")
+  g <- g + axis$set_labels_font()
+  g <- g + axis$modify_x_axis(lower_and_upper = c(1.0, 7.0),
+                              ticks = seq(1.0, 7.0, 0.5))
+  g <- g + axis$modify_y_axis(lower_and_upper = c(0, 80),
+                              ticks = seq(0, 80, 10))
+  g <- g + axis$set_axis_font()
+
+  g <- g + scale_fill_manual(name = "",
+                             values = c("green"),
+                             labels = c("TODO: Write label name"))
+  legend <- scatter_plot$add_legend()
+  g <- g + legend$set_position(c(0.25, 0.9))
+  g <- g + legend$set_font()
+  g <- g + legend$set_edge()
 
   grid <- scatter_plot$add_grid()
   g <- g + grid$set_default()
 
-  x_axis <- scatter_plot$add_x_axis()
-  y_axis <- scatter_plot$add_y_axis()
-  print(g)
-
-  # bar.hwy.ic.Tohoku_2011 <-
-  #   format_for_ggplot(fig = hwy.ic.Tohoku_2011,
-  #                     row_names = seismic_intensity_range,
-  #                     fig_col_names = c("No_suspension_(low_seismic_intensity_area)", "No_suspension", "Suspension"),
-  #                     fig_df_col_names = c("JMA_seismic_intensity", "status", "frequency"))
-
-#   renderer <- Renderer$new()
-
-#   for (i in 1:3) {
-#     renderer$add_graph_object(g)
-#   }
-
-#   renderer$render_graph_objects()
+  return (g)
 }
-
-# format_for_ggplot <- function(fig, row_names, fig_col_names, fig_df_col_names) {
-#   # Generate data frame object of figure for ggplot2.
-#   #
-#   # fig             : figure ojbects.
-#   # row_names       : row label name in figure objects.
-#   # fig_col_names   : column label name in figure objects.
-#   # fig_df_col_names: column label name in data frame for ggplot2.
-#   rownames(fig) <- row_names
-#   colnames(fig) <- fig_col_names
-
-#   # Convert format to ajust ggplot2.
-#   fig.df <- melt(fig)
-#   colnames(fig.df) <- fig_df_col_names
-
-#   return (fig.df)
-# }
 
 main()
