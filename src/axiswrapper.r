@@ -18,21 +18,21 @@ AxisWrapper <-
         return (theme(axis.title = element_text(size = size)))
       },
 
-      modify_x_axis_limits = function(min_value = 0, max_value) {
-        return (scale_x_continuous(limits = c(min_value, max_value)))
+      # lower_and_upper: modify the axis limits.
+      # ticks          : choose where the ticks appear.
+
+      # example:
+      # modify_x_axis(lower_and_upper = c(1.0, 7.0),
+      #               breaks = seq(1.0, 7.0, 0.5))
+      # seq(min_value, max_value, span)
+      modify_x_axis = function(lower_and_upper, ticks) {
+        return (scale_x_continuous(limits = lower_and_upper,
+                                   breaks = ticks)
+        )
       },
 
       modify_y_axis_limits = function(min_value = 0, max_value) {
         return (scale_y_continuous(limits = c(min_value, max_value)))
-      },
-
-      # ticks: choose where the ticks appear.
-      # examples:
-      # show_x_axis_labels(ticks = c(2, 4, 6))
-      # show_x_axis_labels(ticks = seq(min_value, max_value, span))
-      # show_x_axis_labels(ticks = seq(1.0, 7.0, 0.5))
-      show_x_axis_labels = function(ticks) {
-        return (scale_x_continuous(breaks = ticks))
       },
 
       show_y_axis_labels = function(ticks) {
