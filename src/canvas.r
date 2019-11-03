@@ -13,6 +13,10 @@ Canvas <-
 
       add_title = function(main_title = "") {
         return (labs(title = main_title))
+      },
+
+      add_margin = function(size = c(0.5, 1, 0.5, 0.5), unit = "cm") {
+        return (theme(plot.margin = unit(size, unit)))
       }
     )
   )
