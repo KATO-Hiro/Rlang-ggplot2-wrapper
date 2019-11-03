@@ -11,8 +11,8 @@ source("pdfcreator.r")
 source("renderer.r")
 
 main <- function(){
-  # pdf <- PDFCreator$new(my_name = "sample")
-  # pdf$open()
+  pdf <- PDFCreator$new(my_name = "sample")
+  pdf$open()
   renderer <- Renderer$new()
 
   file_name <- "sample.csv"
@@ -63,7 +63,7 @@ main <- function(){
 
   renderer$render_graph_objects()
 
-  # pdf$close()
+  pdf$close()
 }
 
 make_a_scatter_plot <- function(data, aes, title) {
