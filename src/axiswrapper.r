@@ -26,6 +26,15 @@ AxisWrapper <-
         return (scale_y_continuous(limits = c(min_value, max_value)))
       },
 
+      # ticks: choose where the ticks appear.
+      # examples:
+      # show_x_axis_labels(ticks = c(2, 4, 6))
+      # show_x_axis_labels(ticks = seq(min_value, max_value, span))
+      # show_x_axis_labels(ticks = seq(1.0, 7.0, 0.5))
+      show_x_axis_labels = function(ticks) {
+        return (scale_x_continuous(breaks = ticks))
+      },
+
       set_axis_font = function(size = 15) {
         return (theme(axis.text = element_text(size = size)))
       }
