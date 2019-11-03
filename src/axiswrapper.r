@@ -10,7 +10,7 @@ AxisWrapper <-
       initialize = function() {
       },
 
-      add_label = function(x_axis_name, y_axis_name) {
+      add_labels = function(x_axis_name, y_axis_name) {
         labs(x = x_axis_name, y = y_axis_name)
       }
     )
