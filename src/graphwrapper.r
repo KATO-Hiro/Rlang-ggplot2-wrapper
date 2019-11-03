@@ -29,6 +29,8 @@
 #
 #  grid <- scatter_plot$add_grid()
 #  g <- g + grid$set_default()
+#
+# print(g)
 
 require(R6)
 require(ggplot2)
