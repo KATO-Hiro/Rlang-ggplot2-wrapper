@@ -8,7 +8,6 @@ AxisWrapper <-
   R6Class("AxisWrapper",
     public = list(
       initialize = function() {
-        print('called!')
       },
 
       add_label = function(x_axis_name, y_axis_name) {
