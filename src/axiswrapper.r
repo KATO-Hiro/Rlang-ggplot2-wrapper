@@ -4,6 +4,7 @@ require(ggplot2)
 # See:
 # https://cran.r-project.org/web/packages/R6/R6.pdf
 # https://adv-r.hadley.nz/r6.html
+# https://ggplot2.tidyverse.org/reference/scale_continuous.html
 AxisWrapper <-
   R6Class("AxisWrapper",
     public = list(
