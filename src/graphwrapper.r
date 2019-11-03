@@ -1,21 +1,21 @@
 # Graph wrapper for ggplot2.
 
 # Usage:
-#  Install these packages as needed.
+##  Install these packages as needed.
 #  install.packages("R6")
 #  install.packages("tidyverse")
-
-#  Import libraries and helper files.
+#
+##  Import libraries and helper files.
 #  require(R6)
 #  require("tidyr")
 #  require("reshape2")
-
+#
 #  source("graphwrapper.r")
 #  source("renderer.r")
 #
-#  Prepare data and convert its format for ggplot2.
+##  Prepare data and convert its format for ggplot2.
 #
-#  Make a scatter plot.
+##  Make a scatter plot.
 #  scatter_plot <- ScatterPlotWrapper$new(data, aes)
 #  g <- scatter_plot$get_graph_object()
 #
