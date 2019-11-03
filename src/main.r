@@ -41,6 +41,17 @@ main <- function(){
                          title = "TODO: Write title.")
 
   renderer$add_graph_object(g)
+
+  aes <- aes(x = Date,
+             y = Temperature,
+             fill = "")
+
+  g <- make_a_bar_graph(data = df_temperature,
+                        aes = aes,
+                        title = "TODO: Write title.")
+
+  renderer$add_graph_object(g)
+
   renderer$render_graph_objects()
 
   pdf$close()
@@ -98,6 +109,35 @@ make_a_line_graph <- function(data, aes, title) {
   g <- g + axis$modify_y_axis(lower_and_upper = c(0, 20),
                               ticks = seq(0, 20, 2))
   g <- g + axis$set_axis_font()
+
+  return (g)
+}
+
+make_a_bar_graph <- function(data, aes, title) {
+  bar_graph <- BarGraphWrapper$new(data, aes)
+  g <- bar_graph$get_graph_object()
+
+  canvas <- bar_graph$add_canvas()
+  g <- g + canvas$initialize_background()
+  g <- g + canvas$add_title(title)
+  g <- g + canvas$add_margin()
+
+  axis <- bar_graph$add_axis()
+  g <- g + axis$add_labels(x_axis_name = "TODO: Write x axis label name.",
+                           y_axis_name = "TODO: Write y axis label name.")
+  g <- g + axis$set_labels_font()
+  g <- g + axis$modify_x_axis(ticks = date_breaks("90 days"))
+  g <- g + axis$modify_y_axis(lower_and_upper = c(0, 20),
+                              ticks = seq(0, 20, 2))
+  g <- g + axis$set_axis_font()
+
+  g <- g + scale_fill_manual(name = "",
+                             values = c("darkblue"),
+                             labels = c("TODO: Write label name"))
+  legend <- bar_graph$add_legend()
+  g <- g + legend$set_position(c(0.25, 0.9))
+  g <- g + legend$set_font()
+  g <- g + legend$set_edge()
 
   return (g)
 }

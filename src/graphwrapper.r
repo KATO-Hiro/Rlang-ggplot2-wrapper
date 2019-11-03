@@ -130,3 +130,24 @@ LineGraphWrapper <-
       }
     )
   )
+
+BarGraphWrapper <-
+  R6Class("LineGraphWrapper",
+    inherit = GraphWrapper,
+
+    public = list(
+      initialize = function(data, aes) {
+        super$initialize(data)
+        self$add_geom(aes)
+      },
+
+      add_geom = function(aes) {
+        private$graph_object <-
+          private$graph_object + geom_bar(aes, stat = "identity")
+      },
+
+      add_axis = function() {
+        return (AxisWrapperTimeSeries$new())
+      }
+    )
+  )
