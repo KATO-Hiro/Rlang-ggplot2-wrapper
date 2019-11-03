@@ -4,6 +4,7 @@ require(ggplot2)
 source("axiswrapper.r")
 source("canvas.r")
 source("gridwrapper.r")
+source("legendwrapper.r")
 
 # See:
 # https://cran.r-project.org/web/packages/R6/R6.pdf
@@ -36,7 +37,7 @@ GraphWrapper <-
       },
 
       add_legend = function() {
-        # Legend class
+        return (LegendWrapper$new())
       },
 
       add_grid = function() {
