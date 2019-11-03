@@ -11,7 +11,7 @@ AxisWrapper <-
       },
 
       add_labels = function(x_axis_name, y_axis_name) {
-        labs(x = x_axis_name, y = y_axis_name)
+        return (labs(x = x_axis_name, y = y_axis_name))
       },
 
       set_labels_font = function(size = 15) {
