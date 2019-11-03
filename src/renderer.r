@@ -4,6 +4,7 @@ require(R6)
 # https://cran.r-project.org/web/packages/R6/R6.pdf
 # https://adv-r.hadley.nz/r6.html
 # http://cse.naro.affrc.go.jp/takezawa/r-tips/r/12.html
+# http://takenaka-akio.org/doc/r_auto/list.html
 Renderer <-
   R6Class("Renderer",
     private = list(
