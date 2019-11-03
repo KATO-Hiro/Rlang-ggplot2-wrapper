@@ -7,16 +7,15 @@ require(R6)
 Renderer <-
   R6Class("Renderer",
     private = list(
-      graph_object_list = NA
+      graph_object_list = list()
     ),
 
     public = list(
       initialize = function() {
-        private$graph_object_list <- c()
       },
 
       add_graph_object = function(g) {
-        private$graph_object_list <- c(private$graph_object_list, g)
+        private$graph_object_list <- cbind(private$graph_object_list, list(g))
       },
 
       render_graph_objects = function() {
