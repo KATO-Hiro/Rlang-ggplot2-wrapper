@@ -6,6 +6,7 @@ require("tidyr")
 require("reshape2")
 
 source("graphwrapper.r")
+source("pdfcreator.r")
 source("renderer.r")
 
 main <- function(){
@@ -18,9 +19,15 @@ main <- function(){
                            aes = aes,
                            title = "TODO: Write title.")
 
+  pdf <- PDFCreator$new(my_name = "sample")
+  pdf$open()
+
   renderer <- Renderer$new()
   renderer$add_graph_object(g)
+  renderer$add_graph_object(g)
   renderer$render_graph_objects()
+
+  pdf$close()
 }
 
 make_a_scatter_plot <- function(data, aes, title) {
