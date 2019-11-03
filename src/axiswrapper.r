@@ -18,6 +18,10 @@ AxisWrapper <-
         return (theme(axis.title = element_text(size = size)))
       },
 
+      modify_x_axis_limits = function(min_value = 0, max_value) {
+        return (scale_x_continuous(limits = c(min_value, max_value)))
+      },
+
       set_axis_font = function(size = 15) {
         return (theme(axis.text = element_text(size = size)))
       }
