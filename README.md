@@ -11,7 +11,7 @@ Wrapper class for ggplot2 in Rlang.
 
 - Bar
 
-  ![Bar](screenshots/bar_graph.jpg)
+  ![Bar](screenshots/bar_graph.jpg =100x100)
 
 - Histgram
 
