@@ -7,6 +7,7 @@ require("tidyverse")
 source("graphwrapper.r")
 source("pdfcreator.r")
 source("renderer.r")
+source("colorwrapper.r")
 
 main <- function(){
   pdf <- PDFCreator$new(my_name = "sample")
@@ -117,7 +118,6 @@ make_a_scatter_plot <- function(data, aes, title) {
                               ticks = seq(0, 80, 10))
   g <- g + axis$set_axis_font()
 
-  boston_univ_red <- "#CC0000"
   g <- g + scale_color_manual(name = "fizz",
                               values = c(boston_univ_red, "blue"),
                               labels = c("hoge", "foo"))
