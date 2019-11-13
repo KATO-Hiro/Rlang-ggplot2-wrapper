@@ -2,8 +2,8 @@
 # install.packages("tidyverse")
 
 require(R6)
-require("tidyr")
-require("reshape2")
+# require("tidyr")
+# require("reshape2")
 require("tidyverse")
 
 source("graphwrapper.r")
@@ -18,8 +18,13 @@ main <- function(){
   # Scatter plot sample.
   file_name <- "sample.csv"
   sample_data <- read.csv(file_name)
+  sample_data <- sample_data %>%
+    pivot_longer(cols = c(y_axis_values),
+                 names_to = "y_axis_cases",
+                 values_to = "new_y_axis_values") %>%
+    print()
   aes <- aes(x = sample_data$x_axis_values,
-             y = sample_data$y_axis_values,
+             y = sample_data$new_y_axis_values,
              fill = "")
   g <- make_a_scatter_plot(data = sample_data,
                            aes = aes,
