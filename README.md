@@ -81,6 +81,8 @@ source("main.r")
 
 [tidyverse](https://www.tidyverse.org/packages/)
 
+[tidyr-pivot](https://speakerdeck.com/yutannihilation/tidyr-pivot)
+
 [R6 in CRAN](https://cran.r-project.org/web/packages/R6/R6.pdf)
 
 [Readme Driven Development; RDD](https://qiita.com/b4b4r07/items/c80d53db9a0fd59086ec)
