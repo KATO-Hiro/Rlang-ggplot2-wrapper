@@ -18,11 +18,10 @@ main <- function(){
   # Scatter plot sample.
   file_name <- "sample.csv"
   sample_data <- read.csv(file_name)
-  sample_data <- sample_data %>%
-    pivot_longer(cols = c(y_axis_values),
-                 names_to = "y_axis_cases",
-                 values_to = "new_y_axis_values") %>%
-    print()
+  sample_data <- to_long_format(data = sample_data,
+                                cols = "y_axis_values",
+                                names_to = "y_axis_cases",
+                                values_to = "new_y_axis_values")
   aes <- aes(x = sample_data$x_axis_values,
              y = sample_data$new_y_axis_values,
              fill = "")
@@ -73,6 +72,31 @@ main <- function(){
   renderer$render_graph_objects()
 
   pdf$close()
+}
+
+# See:
+# https://rdrr.io/github/tidyverse/tidyr/f/NEWS.md
+# https://speakerdeck.com/yutannihilation/tidyr-pivot
+# https://heavywatal.github.io/rstats/tidyr.html
+# data: Original data.
+# cols: Columns you want to summarize.
+#   examples:
+#     cols = col1
+#     cols = c(col1, col2, col3)
+#     cols = col1:col3 # range
+#     cols = -col2 # excluding col(s)
+#     cols = c("col1", "col2", "col3")
+#     cols = starts_with("col") # use helper function
+#     cols = c(col1, "col2", last_col()) # combinations
+# names_to: a new column label after grouping column names.
+# values_to: a new column label after grouping values.
+to_long_format <- function(data, cols, names_to, values_to) {
+  long_format_data <- data %>%
+    pivot_longer(cols = cols,
+                 names_to = names_to,
+                 values_to = values_to)
+
+  return (long_format_data)
 }
 
 make_a_scatter_plot <- function(data, aes, title) {
