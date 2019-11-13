@@ -17,12 +17,13 @@ main <- function(){
   file_name <- "sample.csv"
   sample_data <- read.csv(file_name)
   sample_data <- to_long_format(data = sample_data,
-                                cols = "y_axis_values",
+                                cols = c("y_axis_values"),
                                 names_to = "y_axis_cases",
                                 values_to = "new_y_axis_values")
   aes <- aes(x = sample_data$x_axis_values,
              y = sample_data$new_y_axis_values,
-             fill = "")
+             color = sample_data$y_axis_cases,
+             size = sample_data$y_axis_cases)
   g <- make_a_scatter_plot(data = sample_data,
                            aes = aes,
                            title = "TODO: Write title.")
@@ -116,9 +117,15 @@ make_a_scatter_plot <- function(data, aes, title) {
                               ticks = seq(0, 80, 10))
   g <- g + axis$set_axis_font()
 
-  g <- g + scale_fill_manual(name = "",
-                             values = c("green"),
-                             labels = c("TODO: Write label name"))
+  boston_univ_red <- "#CC0000"
+  g <- g + scale_color_manual(name = "fizz",
+                              values = c(boston_univ_red, "blue"),
+                              labels = c("hoge", "foo"))
+  # See:
+  # http://www.sthda.com/english/wiki/ggplot2-legend-easy-steps-to-change-the-position-and-the-appearance-of-a-graph-legend-in-r-software
+  g <- g + scale_size_manual(values = c(3, 3),
+                             guide = FALSE)
+
   legend <- scatter_plot$add_legend()
   g <- g + legend$set_position(c(0.25, 0.9))
   g <- g + legend$set_font()
@@ -126,6 +133,8 @@ make_a_scatter_plot <- function(data, aes, title) {
 
   grid <- scatter_plot$add_grid()
   g <- g + grid$set_default()
+  g <- g + grid$add_major_line("gray")
+  g <- g + grid$add_minor_line("white")
 
   return (g)
 }
