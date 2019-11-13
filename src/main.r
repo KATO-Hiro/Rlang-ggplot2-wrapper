@@ -30,6 +30,8 @@ main <- function(){
                            title = "TODO: Write title.")
   g <- g + geom_smooth(mapping = aes,
                        se = TRUE,
+                       color = "black",
+                       size = 1.5,
                        )
   renderer$add_graph_object(g)
 
