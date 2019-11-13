@@ -2,8 +2,6 @@
 # install.packages("tidyverse")
 
 require(R6)
-# require("tidyr")
-# require("reshape2")
 require("tidyverse")
 
 source("graphwrapper.r")
