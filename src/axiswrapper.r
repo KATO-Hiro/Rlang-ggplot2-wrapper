@@ -5,6 +5,7 @@ require(ggplot2)
 # https://cran.r-project.org/web/packages/R6/R6.pdf
 # https://adv-r.hadley.nz/r6.html
 # https://ggplot2.tidyverse.org/reference/scale_continuous.html
+# https://www.rdocumentation.org/packages/ggplot2/versions/2.1.0/topics/element_text
 AxisWrapper <-
   R6Class("AxisWrapper",
     public = list(
@@ -43,6 +44,13 @@ AxisWrapper <-
 
       set_axis_font = function(size = 15) {
         return (theme(axis.text = element_text(size = size)))
+      },
+
+      # angle: angle (in [0, 360])
+      # hjust: horizontal justification (in [0, 1])
+      rotate_x_axis = function(angle = 90, hjust = 1) {
+        return (theme(axis.text.x = element_text(angle = angle,
+                                                 hjust = hjust)))
       }
     )
   )
