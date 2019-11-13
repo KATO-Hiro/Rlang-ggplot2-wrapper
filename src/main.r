@@ -117,6 +117,7 @@ make_a_scatter_plot <- function(data, aes, title) {
   g <- g + axis$modify_y_axis(lower_and_upper = c(0, 80),
                               ticks = seq(0, 80, 10))
   g <- g + axis$set_axis_font()
+  g <- g + axis$rotate_x_axis()
 
   g <- g + scale_color_manual(name = "fizz",
                               values = c(boston_univ_red, "blue"),
