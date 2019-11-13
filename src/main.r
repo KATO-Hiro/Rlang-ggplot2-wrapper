@@ -10,8 +10,8 @@ source("renderer.r")
 source("colorwrapper.r")
 
 main <- function(){
-  pdf <- PDFCreator$new(my_name = "sample")
-  pdf$open()
+  # pdf <- PDFCreator$new(my_name = "sample")
+  # pdf$open()
   renderer <- Renderer$new()
 
   # Scatter plot sample.
@@ -28,7 +28,9 @@ main <- function(){
   g <- make_a_scatter_plot(data = sample_data,
                            aes = aes,
                            title = "TODO: Write title.")
-
+  g <- g + geom_smooth(mapping = aes,
+                       se = TRUE,
+                       )
   renderer$add_graph_object(g)
 
   # Line graph sample.
@@ -71,7 +73,7 @@ main <- function(){
 
   renderer$render_graph_objects()
 
-  pdf$close()
+  # pdf$close()
 }
 
 # See:
