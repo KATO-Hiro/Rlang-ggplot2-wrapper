@@ -40,16 +40,11 @@ main <- function(){
   arg_list <- list(a = a, b = b, c = c)
   x_axis_range <- c(1.0, 5.5)
 
-  # See:
-  # https://ggplot2.tidyverse.org/reference/stat_function.html#arguments
-  # https://qiita.com/hoxo_b/items/a6522a6e6561f8ca7b96#q
-  g <- g + stat_function(mapping = aes,
-                         fun = power_function,
-                         args = arg_list,
-                         xlim = x_axis_range,
-                         color = "black",
-                         size = 1.5,
-                         )
+  g <- g + add_curve(
+    aes = aes,
+    function_shape = power_function,
+    function_args = arg_list,
+    x_axis_range = x_axis_range)
 
   renderer$add_graph_object(g)
 

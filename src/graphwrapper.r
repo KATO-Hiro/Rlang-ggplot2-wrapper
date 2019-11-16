@@ -111,6 +111,40 @@ ScatterPlotWrapper <-
     )
   )
 
+# function_shape: Shape of function.
+# function_args : args of function. Use list type.
+# x_axis_range  : lower and upper limit in x axis. c(value_min, value_max)
+
+# Usage:
+# Define your function if needs. You can use built-in functions.
+# power_function <- function(x, a, b, c) {
+#   a * (x - b) ** c
+# }
+#
+# Add a curve to existed graphic object.
+# g <- g + add_curve(
+#   aes = aes,
+#   function_shape = power_function,
+#   function_args = list(a = hoge, b = foo, c = bar),
+#   x_axis_range = c(1.0, 7.0),
+#   color = "black",
+#   size = 1.5)
+
+# See:
+# https://ggplot2.tidyverse.org/reference/stat_function.html#arguments
+# https://qiita.com/hoxo_b/items/a6522a6e6561f8ca7b96#q
+add_curve <-
+  function(aes, function_shape, function_args,
+           x_axis_range, color = "black", size = 1.5) {
+  stat_function(mapping = aes,
+                fun = function_shape,
+                args = function_args,
+                xlim = x_axis_range,
+                color = color,
+                size = size,
+                )
+}
+
 LineGraphWrapper <-
   R6Class("LineGraphWrapper",
     inherit = GraphWrapper,
